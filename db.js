@@ -106,5 +106,25 @@ module.exports = {
                 })
             })
         })
+    },
+    remove(db, argv) {
+        return new Promise(resolve => {
+            db.remove(...([].concat(argv)), (err, newDoc) => {
+                if (err) {
+                    resolve({
+                        code: 0,
+                        msg: '删除失败'
+                    })
+    
+                    return
+                }
+    
+                resolve({
+                    code: 1,
+                    data: newDoc,
+                    msg: 'ok'
+                })
+            })
+        })
     }
 }
