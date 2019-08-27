@@ -126,5 +126,25 @@ module.exports = {
                 })
             })
         })
+    },
+    count(db, argv) {
+        return new Promise(resolve => {
+            db.count(...([].concat(argv)), (err, docs) => {
+                if (err) {
+                    resolve({
+                        code: 0,
+                        msg: '查询失败'
+                    })
+    
+                    return
+                }
+    
+                resolve({
+                    code: 1,
+                    data: docs,
+                    msg: 'ok'
+                })
+            })
+        })
     }
 }
