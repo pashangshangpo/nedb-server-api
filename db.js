@@ -66,5 +66,25 @@ module.exports = {
                 })
             })
         })
+    },
+    findOne(db, argv) {
+        return new Promise(resolve => {
+            db.findOne(...([].concat(argv)), (err, doc) => {
+                if (err) {
+                    resolve({
+                        code: 0,
+                        msg: '查询出错'
+                    })
+    
+                    return
+                }
+    
+                resolve({
+                    code: 1,
+                    data: doc,
+                    msg: 'ok'
+                })
+            })
+        })
     }
 }
