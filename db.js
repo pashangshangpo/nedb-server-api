@@ -53,7 +53,7 @@ module.exports = {
                 if (err) {
                     resolve({
                         code: 0,
-                        msg: '查询出错'
+                        msg: '查询失败'
                     })
     
                     return
@@ -73,7 +73,7 @@ module.exports = {
                 if (err) {
                     resolve({
                         code: 0,
-                        msg: '查询出错'
+                        msg: '查询失败'
                     })
     
                     return
@@ -82,6 +82,26 @@ module.exports = {
                 resolve({
                     code: 1,
                     data: doc,
+                    msg: 'ok'
+                })
+            })
+        })
+    },
+    update(db, argv) {
+        return new Promise(resolve => {
+            db.update(...([].concat(argv)), (err, newDoc) => {
+                if (err) {
+                    resolve({
+                        code: 0,
+                        msg: '更新失败'
+                    })
+    
+                    return
+                }
+    
+                resolve({
+                    code: 1,
+                    data: newDoc,
                     msg: 'ok'
                 })
             })
