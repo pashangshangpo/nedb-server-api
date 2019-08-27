@@ -37,7 +37,7 @@ http.createServer((req, res) => {
             'access-control-allow-credentials': true,
             'access-control-allow-headers': '*',
             'access-control-allow-methods': '*',
-            'access-control-allow-origin': req.headers.origin
+            'access-control-allow-origin': req.headers.origin || '*'
         })
         res.end('hello world')
         return
