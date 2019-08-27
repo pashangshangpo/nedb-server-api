@@ -27,7 +27,7 @@ module.exports = {
             return db
         }
     }()),
-    insert: (db, docs) => {
+    insert(db, docs) {
         return new Promise(resolve => {
             db.insert(docs, (err, newDoc) => {
                 if (err) {
@@ -42,6 +42,26 @@ module.exports = {
                 resolve({
                     code: 1,
                     data: newDoc,
+                    msg: 'ok'
+                })
+            })
+        })
+    },
+    find(db, argv) {
+        return new Promise(resolve => {
+            db.find(...([].concat(argv)), (err, docs) => {
+                if (err) {
+                    resolve({
+                        code: 0,
+                        msg: '查询出错'
+                    })
+    
+                    return
+                }
+    
+                resolve({
+                    code: 1,
+                    data: docs,
                     msg: 'ok'
                 })
             })
