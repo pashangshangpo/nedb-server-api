@@ -43,7 +43,7 @@ http.createServer((req, res) => {
         return
     }
 
-    const path = req.url.split('/api/')[1]
+    const path = req.url.split('/api/')[1] || ''
     const [ name, type ] = path.split('/')
     const fn = dbTool[type]
 
