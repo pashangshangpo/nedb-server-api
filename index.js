@@ -24,10 +24,6 @@ const getJson = (r) => {
 }
 
 const send = (r, data) => {
-    r.writeHead(200, {
-        'Content-Type': 'application/json'
-    })
-
     r.end(JSON.stringify(data))
 }
 
@@ -36,7 +32,8 @@ http.createServer((req, res) => {
         'access-control-allow-credentials': true,
         'access-control-allow-headers': '*',
         'access-control-allow-methods': '*',
-        'access-control-allow-origin': req.headers.origin || '*'
+        'access-control-allow-origin': req.headers.origin || '*',
+        'Content-Type': 'application/json',
     })
 
     if (req.method !== 'POST') {
