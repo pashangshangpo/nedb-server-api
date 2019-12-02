@@ -32,13 +32,14 @@ const send = (r, data) => {
 }
 
 http.createServer((req, res) => {
+    res.writeHead(200, {
+        'access-control-allow-credentials': true,
+        'access-control-allow-headers': '*',
+        'access-control-allow-methods': '*',
+        'access-control-allow-origin': req.headers.origin || '*'
+    })
+
     if (req.method !== 'POST') {
-        res.writeHead(200, {
-            'access-control-allow-credentials': true,
-            'access-control-allow-headers': '*',
-            'access-control-allow-methods': '*',
-            'access-control-allow-origin': req.headers.origin || '*'
-        })
         res.end('hello world')
         return
     }
